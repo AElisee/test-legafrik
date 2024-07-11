@@ -1,0 +1,50 @@
+// configuration de tailwind css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.addForm,
+.editForm {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  margin: 0 auto;
+  transform: translate(-50%, 0);
+}
+
+table {
+  thead {
+    background-color: #c084fc8a;
+  }
+  th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  th,
+  tr {
+    height: 45px;
+    border: 1px solid #f3f4f6;
+    padding-left: 8px;
+  }
+
+  td {
+    padding: 4px;
+  }
+
+  tr:nth-child(even) {
+    // Couleur de fond pour les lignes paires du tableau
+    background-color: #f3f4f6;
+  }
+
+  tr:nth-child(odd) {
+    // Couleur de fond pour les lignes impaires du tableau
+    background-color: #ffffff;
+  }
+}
