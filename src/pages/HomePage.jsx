@@ -12,20 +12,21 @@ import {
   countToDo,
 } from "../data/utils.js";
 
-const Home = () => {
+const HomePage = () => {
   const tasks = useSelector(getAllTasks);
   const [add, setAdd] = useState(false);
 
-  // Faire appaître ou disparître le formulaire d'ajout
+  // Faire appaître ou disparître le formulaire d'ajout au clic
   const handleClickBtn = () => {
     setAdd((prev) => !prev);
   };
+  // ---
 
   return (
-    <div className="p-5 md:px-14 flex flex-col gap-8 relative ">
+    <div className="w-full min-h-[100vh] bg-gradient-to-br from-purple-50 to-pink-50 p-5 md:px-14 flex flex-col gap-8 relative ">
       <div className="flex justify-between items-center">
         <h1 className="font-semibold text-slate-500 text-xl md:text-3xl">
-          Bienvenue sur GesTâches
+          Bienvenue sur <span className="text-purple-700">GesTâches</span> !
         </h1>
 
         {/* bouton d'ajout */}
@@ -35,6 +36,7 @@ const Home = () => {
         >
           Ajouter une tâche
         </button>
+        {/* --- */}
       </div>
 
       <div className="flex justify-center flex-wrap gap-5 items-center ">
@@ -46,7 +48,7 @@ const Home = () => {
             </p>
           </div>
           <div className="w-1/3 flex justify-center items-center text-xl font-semibold p-5">
-            {countToDo(tasks)}
+            {tasks ? countToDo(tasks) : 0}
           </div>
         </div>
 
@@ -54,11 +56,11 @@ const Home = () => {
           <div className="w-2/3 bg-yellow-300 rounded-r-lg">
             <p className="capitalize text-xl p-5 font-semibold flex items-center h-full gap-2">
               <MdPendingActions size={24} className="" />
-              <span> En coure</span>
+              <span> En cours</span>
             </p>
           </div>
           <div className="w-1/3 flex justify-center items-center text-xl font-semibold p-5">
-            {countTaskOnPending(tasks)}
+            {tasks ? countTaskOnPending(tasks) : 0}
           </div>
         </div>
 
@@ -70,12 +72,12 @@ const Home = () => {
             </p>
           </div>
           <div className="w-1/3 flex justify-center items-center text-xl font-semibold p-5">
-            {countCompleteTask(tasks)}
+            {tasks ? countCompleteTask(tasks) : 0}
           </div>
         </div>
       </div>
 
-      {/*LISTE DES TACHES */}
+      {/*liste des tâches */}
       <TaskTable />
 
       {/* le modulaire comme un modal */}
@@ -84,4 +86,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

@@ -15,7 +15,7 @@ const EditTaskForm = ({ handleEdit, task }) => {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    const UpadateData = {
+    const UpdateData = {
       title: title ? title : task?.title,
       description: description ? description : task?.description,
       startDate: date ? date : task.startDate,
@@ -23,14 +23,13 @@ const EditTaskForm = ({ handleEdit, task }) => {
     };
 
     try {
-      await axios.put(`${dataUrl}${task.id}`, UpadateData).then(() => {
+      await axios.put(`${dataUrl}${task.id}`, UpdateData).then(() => {
         setDate("");
         setDescription("");
         setTitle("");
         setStatus("");
 
         handleEdit(false);
-
         dispatch(fetchAsyncTask());
       });
     } catch (error) {

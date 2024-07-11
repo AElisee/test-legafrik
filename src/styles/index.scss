@@ -20,11 +20,11 @@
 
 table {
   thead {
-    background-color: #c084fc8a;
-  }
-  th {
-    padding-top: 5px;
-    padding-bottom: 5px;
+    
+    th {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
   }
 
   th,
@@ -38,13 +38,15 @@ table {
     padding: 4px;
   }
 
-  tr:nth-child(even) {
-    // Couleur de fond pour les lignes paires du tableau
-    background-color: #f3f4f6;
-  }
+  tbody {
+    tr:nth-child(even) {
+      // Couleur de fond pour les lignes paires du tableau
+      background-color: #f3f4f6;
+    }
 
-  tr:nth-child(odd) {
-    // Couleur de fond pour les lignes impaires du tableau
-    background-color: #ffffff;
+    tr:nth-child(odd) {
+      // Couleur de fond pour les lignes impaires du tableau
+      background-color: #ffffff;
+    }
   }
 }

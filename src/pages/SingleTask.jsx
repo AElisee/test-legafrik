@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { fetchAsyncTask, getAllTasks } from "../redux/tasks.slice.js";
 import axios from "axios";
-import { costomizeText, dataUrl } from "../data/utils.js";
+import { costomizeText, dataUrl, DateFormater } from "../data/utils.js";
+import { GoSignOut } from "react-icons/go";
 
 const SingleTask = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const SingleTask = () => {
   };
 
   return (
-    <div className="p-5 md:px-20 flex  flex-col gap-10">
+    <div className="w-full min-h-[100vh] bg-gradient-to-br from-purple-50 to-pink-50 p-5 md:px-20 flex  flex-col gap-10">
       <div className="flex justify-center items-center md:justify-between flex-col md:flex-row gap-4">
         <h1 className="font-bold text-lg md:text-2xl text-slate-500">
           Détail : {thisTask?.title}
@@ -47,26 +48,26 @@ const SingleTask = () => {
             {/* si le status == 2, la tâches est en cours: je cache je bouton commencer */}
             <form
               onClick={(e) => changeStatus(e, 2)}
-              className={`cursor-pointer px-3 py-2 bg-yellow-500 rounded-md text-white font-semibold ${
+              className={`cursor-pointer px-3 py-2 shadow-sm bg-yellow-400 rounded-md text-white font-semibold ${
                 thisTask?.status == 2 && "hidden"
               }`}
             >
               <input type="number" className="hidden" />
-              Commencé
+              Commencer
             </form>
             <form
               onClick={(e) => changeStatus(e, 3)}
-              className="cursor-pointer px-3 py-2 bg-green-500 rounded-md text-white font-semibold"
+              className="cursor-pointer px-3 py-2 shadow-sm bg-green-400 rounded-md text-white font-semibold"
             >
               <input type="number" className="hidden" />
-              Terminé
+              Terminer
             </form>
           </div>
         )}
       </div>
 
       <div
-        className={`sm:w-full rounded-2xl border overflow-hidden 
+        className={`sm:w-full bg-white shadow-sm rounded-2xl border overflow-hidden 
           ${thisTask?.status == 1 ? "border-red-300" : ""}
           ${thisTask?.status == 2 ? "border-yellow-300" : ""}
           ${thisTask?.status == 3 ? "border-green-300" : ""}
@@ -85,7 +86,9 @@ const SingleTask = () => {
           <h2 className="text-2xl text-slate-600 font-semibold">
             {thisTask?.title}
           </h2>
-          <p className="text-base font-medium">Debut : {thisTask?.startDate}</p>
+          <p className="text-base font-medium">
+            Début : {DateFormater(thisTask?.startDate)}
+          </p>
         </div>
         <p className="p-5 text-base text-center">{thisTask?.description}</p>
       </div>
@@ -94,8 +97,12 @@ const SingleTask = () => {
         <Tooltip title="Retour à l'accueil">
           <Link
             to="/"
-            className="px-4 py-2 rounded-md bg-purple-700 shadow-sm text-white font-semibold"
+            className="flex items-center gap-2 px-4 py-2 rounded-md bg-purple-700 shadow-sm text-white font-semibold"
           >
+            <GoSignOut
+              size={21}
+              className="transform rotate-180 font-semibold "
+            />
             Retour
           </Link>
         </Tooltip>

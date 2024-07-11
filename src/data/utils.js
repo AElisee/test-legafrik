@@ -14,39 +14,40 @@ export const taskStatus = (status) => {
   }
 };
 
-// determine le nombre de tâche à faire
+//Détermine le nombre de tâche à faire
 export const countToDo = (data) => {
   const taskToDo = data?.filter((task) => task.status === 1);
-  return taskToDo.length;
+  return taskToDo?.length;
 };
-// determine le nombre de tâche en cours
+//Détermine le nombre de tâche en cours
 export const countTaskOnPending = (data) => {
   const taskOnPending = data?.filter((task) => task.status === 2);
-  return taskOnPending.length;
+  return taskOnPending?.length;
 };
 
-// determine le nombre de tâche terminée
+//Détermine le nombre de tâche terminée
 export const countCompleteTask = (data) => {
   const taskComplete = data?.filter((task) => task.status === 3);
-  return taskComplete.length;
+  return taskComplete?.length;
 };
 
+//Affiche du texte en fonction du status de la tâche
 export const costomizeText = (status) => {
   switch (status) {
     case 1:
-      return "Vous n'avez pas encore commencé cette tâche !";
+      return "Cette tâche est encore à faire !";
 
     case 2:
-      return "Vous n'avez pas encore terminé cette tâche !";
+      return "Cette tâche est encore  en cours !";
     case 3:
-      return "Vous avez déjà terminé cette tâche !";
+      return "Cette tâche est terminé !";
 
     default:
       break;
   }
 };
 
-// formater la date
+// formater la date au format "jour/mois/année heure:minute"
 export const DateFormater = (dateString) => {
   const options = {
     year: "numeric",
